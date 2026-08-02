@@ -1,10 +1,10 @@
 <div align="center">
 
-# 📈 Volatility-Targeted Time-Series Momentum
+# RiskLab
 
-### A Multi-Asset Quantitative Finance Research Project
+### Research Framework for Systematic Portfolio Construction & Risk Management
 
-Dynamic Risk Management • Multi-Asset Portfolio Construction • Volatility Targeting • Reproducible Research
+Portfolio Construction &nbsp;•&nbsp; Risk Management &nbsp;•&nbsp; Systematic Investing &nbsp;•&nbsp; Quantitative Research &nbsp;•&nbsp; Reproducible Finance
 
 <br>
 
@@ -19,93 +19,126 @@ Dynamic Risk Management • Multi-Asset Portfolio Construction • Volatility Ta
 ![Strategy](https://img.shields.io/badge/Strategy-Time--Series%20Momentum-success?style=flat-square)
 ![Risk](https://img.shields.io/badge/Risk-Volatility%20Targeting-red?style=flat-square)
 ![Portfolio](https://img.shields.io/badge/Portfolio-Multi--Asset-purple?style=flat-square)
-![Status](https://img.shields.io/badge/Status-Completed-brightgreen?style=flat-square)
+![Status](https://img.shields.io/badge/Status-Active-brightgreen?style=flat-square)
 
 </div>
 
 ---
 
-# Project Overview
+## Abstract
 
-This project investigates the implementation of a **Volatility-Targeted Time-Series Momentum (VTM)** strategy across multiple asset classes. The objective is to evaluate whether combining momentum signals with dynamic volatility scaling can improve the risk-adjusted performance of a diversified investment portfolio.
+RiskLab is a modular quantitative research framework for designing, evaluating, and comparing systematic investment strategies under realistic portfolio constraints. The framework provides reusable components for signal generation, portfolio construction, volatility targeting, transaction cost modelling, performance attribution, and statistical evaluation.
 
-The framework progresses from a single-asset implementation to a diversified multi-asset portfolio before introducing **portfolio-level volatility targeting**. The entire project is implemented in Python using a modular architecture and includes automated unit tests and a fully reproducible Jupyter notebook.
-
----
-
-# Table of Contents
-
-- Project Overview
-- Research Question
-- Methodology
-- Strategy Components
-- Asset Universe
-- Repository Structure
-- Results
-- Figures
-- Main Features
-- Technologies
-- Installation
-- References
-- License
+The first implemented strategy investigates whether portfolio-level volatility targeting improves the risk-adjusted performance of a diversified time-series momentum portfolio across multiple asset classes.
 
 ---
 
-# Research Question
+## Motivation
 
-> Can portfolio-level volatility targeting improve the risk-adjusted performance of a diversified time-series momentum strategy compared with a conventional momentum portfolio?
+Traditional systematic strategies typically optimise for returns while assuming static risk. In practice:
+
+- volatility is time-varying,
+- cross-asset correlations shift across regimes,
+- portfolio leverage changes with market conditions,
+- transaction costs erode theoretical alpha.
+
+**RiskLab investigates a central question:** how should systematic portfolios dynamically adapt their exposure as market risk evolves — and what is the measurable cost and benefit of doing so?
 
 ---
 
-# Methodology
+## Research Questions
+
+- Does portfolio-level volatility targeting improve risk-adjusted returns over static momentum strategies?
+- Does multi-asset diversification improve the robustness of time-series momentum signals?
+- What is the empirical trade-off between portfolio turnover and risk-adjusted performance?
+- How stable are systematic strategies across different market regimes and volatility environments?
+
+---
+
+## Framework Architecture
 
 ```text
-Historical Market Data
-        │
-        ▼
-Daily Return Calculation
-        │
-        ▼
-Momentum Signal Generation
-        │
-        ▼
-Rolling Volatility Estimation
-        │
-        ▼
-Position Scaling
-        │
-        ▼
-Multi-Asset Portfolio Construction
-        │
-        ▼
-Portfolio-Level Volatility Targeting
-        │
-        ▼
-Performance Evaluation
+Market Data
+       │
+       ▼
+Data Pipeline
+       │
+       ▼
+Signal Engine
+       │
+       ▼
+Portfolio Construction
+       │
+       ▼
+Risk Engine
+       │
+       ▼
+Execution Model
+       │
+       ▼
+Performance Analytics
+       │
+       ▼
+Research Reports
 ```
 
 ---
 
-# Strategy Components
+## Core Modules
 
-- Historical market data collection
-- Daily return calculation
-- Time-series momentum signal generation
+### Data Layer
+- Historical market data ingestion (multi-asset ETF universe)
+- Daily log and arithmetic return computation
+- Data validation and alignment
+
+### Signal Engine
+
+**Current**
+- Time-Series Momentum (lookback-based sign signal)
+
+**Planned**
+- Cross-Sectional Momentum
+- Mean Reversion
+- Carry
+- Value / Quality
+
+### Portfolio Engine
+
+**Current**
+- Equal-Weight Construction
+- Single-Asset Volatility Scaling
+- Portfolio-Level Volatility Targeting
+
+**Planned**
+- Hierarchical Risk Parity (HRP)
+- Black-Litterman
+- Risk Parity
+- Kelly Allocation
+
+### Risk Engine
 - Rolling volatility estimation
-- Volatility scaling
-- Transaction cost modelling
-- Single-asset backtesting
-- Multi-asset portfolio construction
-- Portfolio-level volatility targeting
-- Performance evaluation
-- Sensitivity analysis
+- Drawdown and underwater curve analysis
+- Leverage and exposure tracking
+- Portfolio turnover computation
+
+### Analytics
+- CAGR, Sharpe, Sortino, Calmar
+- Maximum Drawdown
+- Rolling performance metrics
+- Sensitivity analysis across parameter space
 
 ---
 
-# Asset Universe
+## Current Research
+
+### Study I — Portfolio-Level Volatility Targeting
+
+**Objective:** Evaluate whether dynamically scaling a diversified momentum portfolio to a fixed annualized volatility target improves its risk-adjusted performance relative to unscaled alternatives.
+
+#### Asset Universe
 
 | ETF | Asset Class |
-|------|-------------|
+|-----|-------------|
 | SPY | U.S. Equities |
 | QQQ | Technology Equities |
 | GLD | Gold |
@@ -113,58 +146,37 @@ Performance Evaluation
 | DBC | Commodities |
 | VNQ | Real Estate |
 
----
+#### Strategies Evaluated
 
-# Repository Structure
-
-```text
-Volatility-Targeted-Time-Series-Momentum/
-
-├── data/
-├── notebooks/
-├── results/
-├── src/
-├── tests/
-├── README.md
-├── requirements.txt
-└── .gitignore
-```
+| # | Strategy | Description |
+|---|----------|-------------|
+| 1 | Buy & Hold | Passive benchmark (SPY) |
+| 2 | Single-Asset Momentum | Momentum signal applied to SPY with volatility scaling |
+| 3 | Multi-Asset Momentum Portfolio | Equal-weight diversified momentum across all six assets |
+| 4 | Volatility-Targeted Portfolio | Portfolio-level scaling to a 10% annualized volatility target |
 
 ---
 
-# Results
+## Results
 
-The framework evaluates four investment strategies:
+The study demonstrates that portfolio-level volatility targeting successfully stabilises realised portfolio volatility at the desired annualized target while maintaining competitive long-term returns. Volatility targeting materially reduces drawdown severity and smooths the equity curve relative to unscaled strategies — at the cost of some CAGR drag attributable to leverage constraints during low-volatility regimes.
 
-- Buy-and-Hold
-- Single-Asset Momentum
-- Diversified Multi-Asset Portfolio
-- Portfolio-Level Volatility Targeting
-
-Portfolio-level volatility targeting successfully restored the portfolio to the desired annualized volatility target while improving the overall risk-adjusted performance.
-
-## Performance Summary
+### Performance Summary
 
 | Strategy | CAGR | Annualized Volatility | Sharpe Ratio |
-|-----------|------:|----------------------:|-------------:|
-| Buy & Hold (SPY) | **8.86%** | **19.07%** | **0.541** |
-| Volatility-Targeted Momentum (SPY) | **5.72%** | **11.13%** | **0.555** |
-| Multi-Asset Portfolio | **2.52%** | **5.89%** | **0.452** |
-| 10% Targeted Portfolio | **4.76%** | **10.16%** | **0.509** |
+|----------|-----:|----------------------:|-------------:|
+| Buy & Hold (SPY) | 8.86% | 19.07% | 0.541 |
+| Volatility-Targeted Momentum (SPY) | 5.72% | 11.13% | 0.555 |
+| Multi-Asset Portfolio | 2.52% | 5.89% | 0.452 |
+| 10% Volatility-Targeted Portfolio | 4.76% | 10.16% | 0.509 |
 
----
-
-# Figures
-
-## Wealth Curve
+### Wealth Curves
 
 <p align="center">
 <img src="results/wealth_curves.png" width="850">
 </p>
 
----
-
-## Drawdown Comparison
+### Drawdown Comparison
 
 <p align="center">
 <img src="results/drawdowns.png" width="850">
@@ -172,70 +184,125 @@ Portfolio-level volatility targeting successfully restored the portfolio to the 
 
 ---
 
+## Repository Structure
 
-# Main Features
-
-- Modular Python implementation
-- Multi-asset portfolio construction
-- Portfolio-level volatility targeting
-- Transaction cost modelling
-- Automated unit tests
-- Reproducible Jupyter notebook
-- Performance evaluation using standard financial metrics
-
----
-
-# Technologies
-
-- Python
-- Pandas
-- NumPy
-- Matplotlib
-- PyTest
-- Jupyter Notebook
-
----
-
-# Installation
-
-Clone the repository
-
-```bash
-git clone https://github.com/benrejebmeryem9-99/Volatility-Targeted-Time-Series-Momentum.git
+```text
+RiskLab/
+│
+├── notebooks/
+│   ├── 01_Analysis.ipynb
+│   └── 02_Main_Backtest.ipynb          ← primary reproducible research notebook
+│
+├── src/
+│   ├── data_loader.py                  ← data ingestion & return computation
+│   ├── signals.py                      ← momentum signal generation
+│   ├── volatility.py                   ← rolling volatility & scaling
+│   ├── multi_asset.py                  ← portfolio construction
+│   ├── backtest.py                     ← backtesting engine
+│   ├── experiments.py                  ← strategy comparison experiments
+│   ├── metrics.py                      ← performance analytics
+│   └── visualization.py               ← charting & reporting
+│
+├── tests/
+│   ├── test_backtest.py
+│   ├── test_metrics.py
+│   ├── test_volatility.py
+│   └── test_no_lookahead.py            ← look-ahead bias validation
+│
+├── results/
+│   ├── wealth_curves.png
+│   └── drawdowns.png
+│
+├── README.md
+├── requirements.txt
+└── .gitignore
 ```
 
-Install dependencies
+---
+
+## Quickstart
+
+**Clone the repository**
+
+```bash
+git clone https://github.com/Zylus08/Volatility-Targeted-Time-Series-Momentum.git
+cd Volatility-Targeted-Time-Series-Momentum
+```
+
+**Install dependencies**
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Launch Jupyter Notebook
+**Run the test suite**
 
 ```bash
-jupyter notebook
+pytest tests/
 ```
 
-Open
+**Launch the research notebook**
 
-```text
-notebooks/02_Main_Backtest.ipynb
+```bash
+jupyter notebook notebooks/02_Main_Backtest.ipynb
 ```
 
-and run all cells to reproduce the analysis.
+Run all cells to reproduce the full analysis.
 
 ---
 
-# References
+## Roadmap
+
+### Planned Research Studies
+
+| Study | Topic | Status |
+|-------|-------|--------|
+| Study I | Portfolio-Level Volatility Targeting | ✅ Complete |
+| Study II | Cross-Sectional Momentum | 🔲 Planned |
+| Study III | Mean Reversion Signals | 🔲 Planned |
+| Study IV | Risk Parity & HRP Allocation | 🔲 Planned |
+| Study V | Regime Detection & Conditional Strategies | 🔲 Planned |
+| Study VI | Volatility Forecasting (GARCH / ML) | 🔲 Planned |
+| Study VII | Factor Investing & Style Premia | 🔲 Planned |
+| Study VIII | Bayesian Portfolio Optimisation | 🔲 Planned |
+
+---
+
+## Principles
+
+RiskLab is designed around five research principles:
+
+1. **Reproducibility** — every result is generated from a single, self-contained notebook
+2. **Modularity** — components are independently testable and reusable across studies
+3. **Statistical Rigor** — strategies are evaluated on realistic, transaction-cost-adjusted metrics
+4. **Transparent Evaluation** — results are reported with full methodology, including limitations
+5. **Extensibility** — new signals, allocators, and risk models can be added without rewriting existing code
+
+---
+
+## References
 
 - Moskowitz, T., Ooi, Y., & Pedersen, L. (2012). *Time Series Momentum*. Journal of Financial Economics.
 - Moreira, A., & Muir, T. (2017). *Volatility-Managed Portfolios*. Journal of Finance.
 - Barroso, P., & Santa-Clara, P. (2015). *Momentum Has Its Moments*. Journal of Financial Economics.
-- Hurst, B., Ooi, Y., & Pedersen, L. (2017). *A Century of Evidence on Trend-Following Investing*.
+- Hurst, B., Ooi, Y., & Pedersen, L. (2017). *A Century of Evidence on Trend-Following Investing*. AQR Capital Management.
 
 ---
 
-# License
+## Citation
+
+```bibtex
+@software{mishra2026risklab,
+  title   = {RiskLab: A Research Framework for Systematic Portfolio Construction and Risk Management},
+  author  = {Saksham Mishra},
+  year    = {2026},
+  url     = {https://github.com/Zylus08/Volatility-Targeted-Time-Series-Momentum}
+}
+```
+
+---
+
+## License
 
 This project is released under the MIT License.
 
@@ -243,5 +310,6 @@ This project is released under the MIT License.
 
 <div align="center">
 
+*RiskLab — built for research, designed for extensibility.*
 
 </div>
