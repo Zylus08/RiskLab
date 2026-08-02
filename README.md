@@ -292,11 +292,11 @@ RiskLab is designed around five research principles:
 ## Citation
 
 ```bibtex
-@software{mishra2026risklab,
+@software{skmishra2026risklab,
   title   = {RiskLab: A Research Framework for Systematic Portfolio Construction and Risk Management},
   author  = {Saksham Mishra},
   year    = {2026},
-  url     = {https://github.com/Zylus08/Volatility-Targeted-Time-Series-Momentum}
+  url     = {https://github.com/Zylus08/RiskLab}
 }
 ```
 
