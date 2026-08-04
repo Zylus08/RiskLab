@@ -141,3 +141,5 @@ websocket-client==1.9.0
 websockets==16.1
 widgetsnbextension==4.0.15
 yfinance==1.5.1
+pybind11==2.13.6
+build==1.2.1
